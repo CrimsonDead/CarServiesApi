@@ -32,7 +32,7 @@ namespace DataLayer.Repository
 
         public User GetItem(int id)
         {
-            return _context.Users.FirstOrDefault(u => u.Id == id);
+            return _context.Users.FirstOrDefault(u => u.Id == id.ToString());
         }
 
         public IEnumerable<User> GetItems()
