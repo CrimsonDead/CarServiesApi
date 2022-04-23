@@ -96,7 +96,6 @@ namespace ApiLayer.Controllers
                 var result = await _signInManager.PasswordSignInAsync(username, password, false, false);
                 if (result.Succeeded)
                 {
-                    //var user = await _userManager.FindByNameAsync(username);
                     return Ok();
                 }
                 else
@@ -159,7 +158,7 @@ namespace ApiLayer.Controllers
 
             try
             {
-                var targetUser = await _userManager.FindByIdAsync(user.Id);
+                var targetUser = await _userManager.FindByNameAsync(user.UserName);
                 if (targetUser != null)
                 {
                     await _userManager.UpdateAsync(user);
@@ -177,12 +176,12 @@ namespace ApiLayer.Controllers
         }
 
         //[Authorize(Roles = "Admin")]
-        [HttpDelete("Delete/{id}")]
-        public async Task<ActionResult> Delete(string id)
+        [HttpDelete("Delete/{userName}")]
+        public async Task<ActionResult> Delete(string userName)
         {
             try
             {
-                var targetUser = await _userManager.FindByIdAsync(id);
+                var targetUser = await _userManager.FindByNameAsync(userName);
                 if (targetUser != null)
                 {
                     await _userManager.DeleteAsync(targetUser);
