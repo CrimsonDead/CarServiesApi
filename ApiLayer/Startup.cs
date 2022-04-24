@@ -23,12 +23,14 @@ namespace ApiLayer
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment Environment { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -37,7 +39,10 @@ namespace ApiLayer
 
             services.AddDbContext<ApplicationContext>(builder =>
             {
-                builder.UseSqlServer(Configuration.GetConnectionString("MainConnection"));
+                if (Environment.IsDevelopment())
+                    builder.UseSqlServer(Configuration.GetConnectionString("MainConnection"));
+                if (Environment.IsProduction())
+                    builder.UseSqlServer(Configuration.GetConnectionString("ReleaseConnection"));
             });
 
             services.AddIdentity<User, IdentityRole>(options =>
@@ -74,15 +79,14 @@ namespace ApiLayer
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
+            if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ServerApi v1"));
             }
-
             //app.UseHttpsRedirection();
 
             app.UseRouting();
