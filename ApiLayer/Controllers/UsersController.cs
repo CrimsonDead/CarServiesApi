@@ -35,13 +35,14 @@ namespace ApiLayer.Controllers
 
         [AllowAnonymous]
         [HttpPost("Register")]
-        public async Task<ActionResult> Register([FromForm] User user, [FromQuery] string password)
+        public async Task<ActionResult> Register([FromForm] User user, [FromForm] string role, [FromForm] string password)
         {
             try
             {
                 var result = await _userManager.CreateAsync(user, password);
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, role);
                     await _signInManager.SignInAsync(user, false);
                     return Ok();
                 }
@@ -55,9 +56,9 @@ namespace ApiLayer.Controllers
                     return BadRequest(errors);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                return BadRequest("User already exists");
+                return BadRequest(ex.Message);
             }
         }
 
@@ -116,7 +117,7 @@ namespace ApiLayer.Controllers
             return Ok();
         }
 
-        //[Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet("{UserName}", Name = "UserByName")]
         public async Task<ActionResult<User>> UserByName(string userName)
         {

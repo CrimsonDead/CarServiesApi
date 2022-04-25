@@ -4,14 +4,16 @@ using DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220424185714_v2")]
+    partial class v2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,24 +138,21 @@ namespace DataLayer.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a9635b59-c7a1-461d-aba2-d3644df5a56f",
-                            ConcurrencyStamp = "7dbd08e2-b099-4e5e-88c7-f378f3926824",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
+                            Id = "0656a9e6-7a7b-41e7-aa4e-087f064d0e15",
+                            ConcurrencyStamp = "e72daa64-52a1-490c-939f-f5995d59e779",
+                            Name = "Admin"
                         },
                         new
                         {
-                            Id = "2434ab00-136f-49d4-a467-bad65e2fa263",
-                            ConcurrencyStamp = "e1522af2-fd1c-4b7f-9dcf-84dc0c1e0405",
-                            Name = "Servicer",
-                            NormalizedName = "SERVICER"
+                            Id = "fdd5668f-bde2-4cd7-9029-48cb924132f2",
+                            ConcurrencyStamp = "f0e37ee7-4c66-46d3-92ee-76415852801d",
+                            Name = "Servicer"
                         },
                         new
                         {
-                            Id = "b15666e7-a42a-427b-b00f-0c32372180bb",
-                            ConcurrencyStamp = "0d9d3fe7-ce81-4247-8743-2684fca1988c",
-                            Name = "Client",
-                            NormalizedName = "CLIENT"
+                            Id = "cb0c05fc-dcdd-498b-9b4b-a7e9a6ae9517",
+                            ConcurrencyStamp = "6e209ddf-583a-4a07-ae9a-5e2e02f5ca29",
+                            Name = "Client"
                         });
                 });
 

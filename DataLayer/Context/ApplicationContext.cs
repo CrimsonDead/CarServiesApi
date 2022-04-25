@@ -27,10 +27,9 @@ namespace DataLayer.Context
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<IdentityRole>().HasData(
-                new IdentityRole { Name = "Admin" },
-                new IdentityRole { Name = "Servicer" },
-                new IdentityRole { Name = "Client" });
-
+                new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" },
+                new IdentityRole { Name = "Servicer", NormalizedName = "SERVICER" },
+                new IdentityRole { Name = "Client", NormalizedName = "CLIENT" });
         }
     }
 }
