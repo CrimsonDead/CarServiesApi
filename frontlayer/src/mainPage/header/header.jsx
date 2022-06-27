@@ -1,6 +1,7 @@
 import { HeaderDumb } from './headerDumb'
 import React from 'react'
 import '../custom.css'
+import { Link } from 'react-router-dom';
 
 const MainPageHeader = () => {
   return (
@@ -11,11 +12,13 @@ const MainPageHeader = () => {
             {HeaderDumb.map((headerTitle, index) => (
               <div key={index} className='headerComponent'><a href='#'>{headerTitle.title}</a></div>
             ))}
+            <Link to = "/login">
             <div className='headerComponent_LoginButton'>
-              <a href='#'>
-              <button className='headerComponent' style={{ color: 'white', fontWeight: 'bold' }}>login button</button>
-              </a>
-            </div>
+                <button className='headerComponent' style={{ color: 'white', fontWeight: 'bold' }}>
+                  login button
+                </button>
+              </div>
+            </Link>
         </div>
   )
 }

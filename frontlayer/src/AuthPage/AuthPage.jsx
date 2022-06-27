@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../mainPage/custom.css';
-import { LoginPageFields } from './loginPageDumb';
+import { RegistrationPageFields } from './AuthPageDumb';
 
-const Login = () => {
+const Registration = () => {
 
   const serverRequst = async () => {
     // const body =  
@@ -26,14 +26,14 @@ const Login = () => {
     serverRequst();
   }, []);
 
-  const pageFormFields = LoginPageFields;
+  const pageFormFields = RegistrationPageFields;
 
   return (
      <>
       <div className='mainLoginComponent'>
           <div className='loginComponent'>
               <p className='LoginPageMainText'>
-                  Login
+                  Registration
               </p>
               <form>
               <div>
@@ -44,7 +44,7 @@ const Login = () => {
               ))}
               </div>
                 <button className='login_btn'>
-                    LogIn
+                    Registration
                 </button>
               </form>
           </div>
@@ -52,4 +52,4 @@ const Login = () => {
      </>
   )
 }
-export default Login;
+export default Registration;
